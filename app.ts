@@ -1,14 +1,16 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-const cors = require('cors');
+import express, { Request, Response } from 'express';
+import path from 'path';
+import createError from 'http-errors';
+import cookieParser from 'cookie-parser';
+import logger from 'morgan';
+import cors from 'cors';
 
-var port = process.env.PORT || 8080;
-var app = express();
+const app = express();
 
-// view engine setup
+app.use(express.json());
+
+app.get('/', (request: Request, response: Response) => response.send("Successfully connected"));
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(cors());
@@ -24,13 +26,14 @@ app.use('/*', function (req, res, next) {
 	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
 	next();
 });
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
 	next(createError(404));
 });
 
 // error handler
-app.use(function (err, req, res, next) {
+app.use(function (err: any, req: any, res: any, next: any) {
 	// set locals, only providing error in development
 	res.locals.message = err.message;
 	res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -40,8 +43,6 @@ app.use(function (err, req, res, next) {
 	res.render('error');
 });
 
-app.listen(port, function () {
-	console.log('App is running on port ' + port);
-});
+const port = 8080; //|| env.port;
 
-module.exports = app;
+app.listen(port, () => console.log("App is running on: " + port));
