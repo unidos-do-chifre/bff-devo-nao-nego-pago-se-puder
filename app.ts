@@ -55,6 +55,5 @@ app.use(function (err: any, req: any, res: any, next: any) {
 
 const port = process.env.PORT;
 
-port ? () => 
-    app.listen(port, () => console.log("App is running on: " + port))
+port ? app.listen(port, () => console.log("App is running on: " + port))
     : console.log("Please, set a port in your .env file");
