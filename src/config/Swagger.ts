@@ -3,7 +3,7 @@ const swaggerConfig = {
     info: {
         title: 'Devo não nego, pago se puder',
         version: '1.0.0',
-        description: 'Document crud API REST and models'
+        description: 'Documentação API REST da aplicação'
     },
     components: {
         securitySchemes: {
@@ -15,7 +15,6 @@ const swaggerConfig = {
             },
         },
         schemas: {
-            User: ''
         },
     },
     security: [
@@ -29,7 +28,6 @@ const swaggerConfig = {
         }
     ],
     paths: {
-        '/user/login': "",
     },
 }
 
