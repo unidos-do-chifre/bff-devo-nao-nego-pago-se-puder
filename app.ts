@@ -5,11 +5,16 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import cors from 'cors';
 
+import SwaggerSpecs from './src/config/Swagger';
+import swaggerUi from 'swagger-ui-express';
+
 const app = express();
 
 app.use(express.json());
 
 app.get('/', (request: Request, response: Response) => response.send("Successfully connected"));
+
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(SwaggerSpecs));
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
